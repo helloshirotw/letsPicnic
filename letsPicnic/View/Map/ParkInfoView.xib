@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1c4-90-1Wo" customClass="ParkInfoView" customModule="letsPicnic" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ParkName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRM-IJ-vtm">
+                    <rect key="frame" x="94.5" y="8" width="111" height="25.5"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25.5" id="E5D-Uc-Y6W"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_park" translatesAutoresizingMaskIntoConstraints="NO" id="n3U-JS-rDO">
+                    <rect key="frame" x="0.0" y="41.5" width="300" height="158.5"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4sx-d5-ijC">
+                    <rect key="frame" x="0.0" y="41.5" width="300" height="158.5"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AdministrativeArea" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5yb-sk-J9g">
+                            <rect key="frame" x="58" y="24" width="183.5" height="25.5"/>
+                            <color key="backgroundColor" white="0.20976562500000001" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OpenStatus" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9kT-Nq-frR">
+                            <rect key="frame" x="93" y="73.5" width="115" height="25.5"/>
+                            <color key="backgroundColor" white="0.20976562500000001" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OpenTime" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kts-Rt-cNN">
+                            <rect key="frame" x="102" y="123" width="97.5" height="25.5"/>
+                            <color key="backgroundColor" white="0.20976562500000001" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="9kT-Nq-frR" firstAttribute="top" secondItem="5yb-sk-J9g" secondAttribute="bottom" constant="24" id="0gu-V9-RMh"/>
+                        <constraint firstItem="kts-Rt-cNN" firstAttribute="centerX" secondItem="4sx-d5-ijC" secondAttribute="centerX" id="EIJ-8E-km7"/>
+                        <constraint firstItem="5yb-sk-J9g" firstAttribute="top" secondItem="4sx-d5-ijC" secondAttribute="top" constant="24" id="IvA-bA-arR"/>
+                        <constraint firstItem="9kT-Nq-frR" firstAttribute="centerX" secondItem="4sx-d5-ijC" secondAttribute="centerX" id="Pg6-hG-7Eo"/>
+                        <constraint firstItem="kts-Rt-cNN" firstAttribute="top" secondItem="9kT-Nq-frR" secondAttribute="bottom" constant="24" id="hhq-aS-CFH"/>
+                        <constraint firstItem="5yb-sk-J9g" firstAttribute="centerX" secondItem="4sx-d5-ijC" secondAttribute="centerX" id="sFL-hx-b0T"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s07-3A-J31">
+                    <rect key="frame" x="256" y="8" width="36" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="36" id="2ng-Wv-yZP"/>
+                        <constraint firstAttribute="height" constant="24" id="anT-2p-YGU"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                    <state key="normal" title="導航"/>
+                    <connections>
+                        <action selector="guideButtonTapped:" destination="1c4-90-1Wo" eventType="touchUpInside" id="dVB-8O-Yek"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="i2s-Fe-4v4" firstAttribute="bottom" secondItem="n3U-JS-rDO" secondAttribute="bottom" id="2dL-Yg-Du1"/>
+                <constraint firstItem="sRM-IJ-vtm" firstAttribute="top" secondItem="i2s-Fe-4v4" secondAttribute="top" constant="8" id="Brg-yD-MKV"/>
+                <constraint firstItem="sRM-IJ-vtm" firstAttribute="centerX" secondItem="1c4-90-1Wo" secondAttribute="centerX" id="HHa-kZ-UaM"/>
+                <constraint firstItem="i2s-Fe-4v4" firstAttribute="trailing" secondItem="s07-3A-J31" secondAttribute="trailing" constant="8" id="Kfe-ct-dGQ"/>
+                <constraint firstItem="4sx-d5-ijC" firstAttribute="top" secondItem="sRM-IJ-vtm" secondAttribute="bottom" constant="8" id="Kq4-zK-UZj"/>
+                <constraint firstItem="s07-3A-J31" firstAttribute="top" secondItem="i2s-Fe-4v4" secondAttribute="top" constant="8" id="OBa-e6-wXE"/>
+                <constraint firstItem="n3U-JS-rDO" firstAttribute="leading" secondItem="i2s-Fe-4v4" secondAttribute="leading" id="Y3h-yh-MKV"/>
+                <constraint firstItem="4sx-d5-ijC" firstAttribute="bottom" secondItem="i2s-Fe-4v4" secondAttribute="bottom" id="fYX-cA-vCG"/>
+                <constraint firstItem="i2s-Fe-4v4" firstAttribute="trailing" secondItem="n3U-JS-rDO" secondAttribute="trailing" id="nf6-58-VKV"/>
+                <constraint firstItem="4sx-d5-ijC" firstAttribute="leading" secondItem="i2s-Fe-4v4" secondAttribute="leading" id="qlq-lO-KBk"/>
+                <constraint firstItem="i2s-Fe-4v4" firstAttribute="trailing" secondItem="4sx-d5-ijC" secondAttribute="trailing" id="ree-GZ-9jR"/>
+                <constraint firstItem="n3U-JS-rDO" firstAttribute="top" secondItem="sRM-IJ-vtm" secondAttribute="bottom" constant="8" id="vEy-Wf-hnS"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="i2s-Fe-4v4"/>
+            <connections>
+                <outlet property="administrativeAreaLabel" destination="5yb-sk-J9g" id="3dV-dB-dSJ"/>
+                <outlet property="openStatusLabel" destination="9kT-Nq-frR" id="t6g-5a-TsR"/>
+                <outlet property="openTimeLabel" destination="kts-Rt-cNN" id="dvq-U3-noc"/>
+                <outlet property="parkImageView" destination="n3U-JS-rDO" id="rgz-BE-7VU"/>
+                <outlet property="parkNameLabel" destination="sRM-IJ-vtm" id="GIB-Fj-BP6"/>
+            </connections>
+            <point key="canvasLocation" x="112" y="-760"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="default_park" width="75" height="70"/>
+    </resources>
+</document>
