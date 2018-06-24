@@ -10,7 +10,7 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
     
-    //MARK: Life cycle
+    //MARK:- Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,20 +39,5 @@ class MainTabBarController: UITabBarController {
         
         viewControllers = [listTableViewController, mapViewController, favoriteTableViewController]
 
-    }
-    
-    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-//        guard let index = tabBar.items?.index(of: item) else{ return }
-//
-//        let viewController = viewControllers![index]
-//
-//        switch viewController {
-//        case is ListTableViewController:
-//            guard let listTableViewContorller = viewController as? ListTableViewController else { return }
-//            listTableViewContorller.
-//        default:
-        
-//        }
-    }
-    
+    }    
 }

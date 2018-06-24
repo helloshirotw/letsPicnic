@@ -11,8 +11,10 @@ import UIKit
 
 class ListTableViewCell: UITableViewCell {
 
+    //MARK:- Properties
     var delegate: ListViewControllerDelegate?
     var favoriteDelegate: FavoriteTableViewControllerDelegate?
+    var userDefault: UserDefaults?
     
     var park: TaipeiPark! {
         didSet {
@@ -32,19 +34,19 @@ class ListTableViewCell: UITableViewCell {
         }
     }
     
-    var userDefault: UserDefaults?
-
+    //MARK:- IBOutlets
     @IBOutlet weak var parkImageView: UIImageView!
     @IBOutlet weak var parkNameLabel: UILabel!
     @IBOutlet weak var administrativeAreaLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var introductionLabel: UILabel!
 
-    
+    //MARK:- Cell life cycle
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
+    //MARK:- IBActions
     @IBAction func favoriteButtonTapped(_ sender: UIButton) {
         
         if sender.isSelected {

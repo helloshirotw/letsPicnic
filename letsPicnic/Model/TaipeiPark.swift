@@ -27,10 +27,7 @@ struct TaipeiPark: Decodable {
     let Longitude: String
     let ParkType: String
     let Location: String
-    
 }
 
-struct FavoritePark {
-    let tag: Int
-}
+
 

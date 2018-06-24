@@ -23,7 +23,6 @@
 		09BD04A120DBB4F700E17586 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09BD049F20DBB4F600E17586 /* DetailViewController.xib */; };
 		09C0FE3420CBD750006ECAFF /* TaipeiPark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C0FE3320CBD750006ECAFF /* TaipeiPark.swift */; };
 		09D86EC820C98A9200B6B403 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D86EC720C98A9200B6B403 /* AppDelegate.swift */; };
-		09D86ECA20C98A9200B6B403 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D86EC920C98A9200B6B403 /* ViewController.swift */; };
 		09D86ECD20C98A9200B6B403 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09D86ECB20C98A9200B6B403 /* Main.storyboard */; };
 		09D86ECF20C98A9700B6B403 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09D86ECE20C98A9700B6B403 /* Assets.xcassets */; };
 		09D86ED220C98A9700B6B403 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09D86ED020C98A9700B6B403 /* LaunchScreen.storyboard */; };
@@ -56,7 +55,6 @@
 		09C0FE3320CBD750006ECAFF /* TaipeiPark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaipeiPark.swift; sourceTree = "<group>"; };
 		09D86EC420C98A9200B6B403 /* letsPicnic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = letsPicnic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09D86EC720C98A9200B6B403 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		09D86EC920C98A9200B6B403 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		09D86ECC20C98A9200B6B403 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		09D86ECE20C98A9700B6B403 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		09D86ED120C98A9700B6B403 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -104,11 +102,11 @@
 		09BD048F20D65CFC00E17586 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				09BD049220D65D6200E17586 /* DetailsViewController.swift */,
 				09BD049320D65D6200E17586 /* DetailsViewController.xib */,
-				09BD049620DA7E1800E17586 /* ParkFeaturesCollectionView.swift */,
-				09BD049E20DBB4F600E17586 /* DetailViewController.swift */,
 				09BD049F20DBB4F600E17586 /* DetailViewController.xib */,
+				09BD049220D65D6200E17586 /* DetailsViewController.swift */,
+				09BD049E20DBB4F600E17586 /* DetailViewController.swift */,
+				09BD049620DA7E1800E17586 /* ParkFeaturesCollectionView.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -140,7 +138,6 @@
 				09D86EDB20CAB00C00B6B403 /* View */,
 				09D86ED920CAB00500B6B403 /* Model */,
 				09D86EC720C98A9200B6B403 /* AppDelegate.swift */,
-				09D86EC920C98A9200B6B403 /* ViewController.swift */,
 				09D86ECB20C98A9200B6B403 /* Main.storyboard */,
 				09D86ECE20C98A9700B6B403 /* Assets.xcassets */,
 				09D86ED020C98A9700B6B403 /* LaunchScreen.storyboard */,
@@ -302,7 +299,6 @@
 			files = (
 				09BD049B20DB970900E17586 /* String.swift in Sources */,
 				09D86EF320CAB50D00B6B403 /* ListTableViewCell.swift in Sources */,
-				09D86ECA20C98A9200B6B403 /* ViewController.swift in Sources */,
 				0958ED1720D2447D0046388C /* ParkInfoView.swift in Sources */,
 				0958ED1B20D24C7B0046388C /* ParkFacility.swift in Sources */,
 				09D86EC820C98A9200B6B403 /* AppDelegate.swift in Sources */,

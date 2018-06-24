@@ -10,6 +10,7 @@ import UIKit
 
 extension DetailsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    //MARK:- Collection view life cycle
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return parkFeatures.count
     }
@@ -36,6 +37,7 @@ extension DetailsViewController: UICollectionViewDelegate, UICollectionViewDataS
 
 class ParkFeatureCell: UICollectionViewCell {
     
+    //MARK:- Properties
     var parkFeature: ParkFeature! {
         didSet {
             featureParkImageView.setImage(urlString: parkFeature.Image)
@@ -43,6 +45,7 @@ class ParkFeatureCell: UICollectionViewCell {
         }
     }
     
+    //MARK:- Cell life cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -53,6 +56,7 @@ class ParkFeatureCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK:- Cell Outlets
     let featureParkImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -72,6 +76,7 @@ class ParkFeatureCell: UICollectionViewCell {
         return label
     }()
     
+    //MARK:- Methods
     func setupConstraints() {
         
         addSubview(featureParkImageView)
@@ -84,7 +89,4 @@ class ParkFeatureCell: UICollectionViewCell {
         featureNameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         featureNameLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
     }
-    
-    
-    
 }

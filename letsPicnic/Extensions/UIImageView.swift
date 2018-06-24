@@ -12,6 +12,8 @@ let imageCache = NSCache<NSString, UIImage>()
 
 extension UIImageView {
     
+    // Url -> Get imageCache -> setImage
+    //     -> Download to imageCache -> setImage
     func setImage(urlString: String) {
         self.image = nil
         

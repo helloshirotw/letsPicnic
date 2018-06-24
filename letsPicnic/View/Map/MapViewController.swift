@@ -14,19 +14,43 @@ protocol MapViewControllerDelegate {
 }
 
 class MapViewController: UIViewController {
-
-    @IBOutlet weak var mapView: MKMapView!
     
+    //MARK:- Properties
     var locationManager = CLLocationManager()
     var taipeiParks = [TaipeiPark]()
     var parkFacilitiesDic = [String: [ParkFacility]]()
     var parkFeaturesDic = [String: [ParkFeature]]()
     var parkInfoView: ParkInfoView?
 
+    //MARK:- IBOutlets
+    @IBOutlet weak var mapView: MKMapView!
+    
+    //MARK:- View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupMap()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        setAnnotations()
+    }
+    
+    //MARK:- Methods
+    //MARK:- Private method
+    private func setupMap() {
         mapView.delegate = self
+        
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(didDragMap))
+        panGesture.delegate = self
+        mapView.addGestureRecognizer(panGesture)
+        
+        setCLLocation()
+    }
+    
+    private func setCLLocation() {
         locationManager.delegate = self
         
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -35,30 +59,8 @@ class MapViewController: UIViewController {
             locationManager.requestAlwaysAuthorization()
         }
         locationManager.startUpdatingLocation()
-        
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(didDragMap))
-        panGesture.delegate = self
-        mapView.addGestureRecognizer(panGesture)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        setAnnotations()
-
-    }
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
-    }
-    
-    @objc func didDragMap(sender: UIGestureRecognizer) {
-        if sender.state == UIGestureRecognizerState.began {
-            for annotation in mapView.selectedAnnotations {
-                mapView.deselectAnnotation(annotation, animated: false)
-            }
-        }
-    }
 
     func getNearestCoordinate(userCoordinate: CLLocationCoordinate2D, taipeiParks: [TaipeiPark]) -> CLLocationCoordinate2D? {
         var nearestCoordinate: CLLocationCoordinate2D!
@@ -109,9 +111,9 @@ class MapViewController: UIViewController {
     
 }
 
+//MARK:- Map view delegate
 extension MapViewController: MKMapViewDelegate {
-
-
+    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         
         guard let view = view as? AnnotationView, let annotation = view.annotation as? CustomPointAnnotation else { return }
@@ -122,7 +124,10 @@ extension MapViewController: MKMapViewDelegate {
         
     }
     
-    func setParkInfoView(annotation: CustomPointAnnotation) {
+    //MARK:- Map view methods
+    //MARK:- Private methods
+    //MARK:- ParkInfoView
+    private func setParkInfoView(annotation: CustomPointAnnotation) {
         parkInfoView = Bundle.main.loadNibNamed(ViewConstants.PARK_INFO, owner: self, options: nil)?.first as? ParkInfoView
         parkInfoView?.mapViewController = self
         parkInfoView?.parkFeaturesDic = parkFeaturesDic
@@ -134,13 +139,11 @@ extension MapViewController: MKMapViewDelegate {
         mapView.addSubview(parkInfoView!)
     }
     
-    func select(annotation: CustomPointAnnotation) {
-//        setParkInfoView(annotation: annotation)
-        mapView.selectAnnotation(annotation, animated: true)
-//        setParkInfoView(annotation: annotation)
-//        print(mapView.selectedAnnotations)
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        parkInfoView?.removeFromSuperview()
     }
     
+    //MARK: Annotations
     func addAnnotationGestureRecognizer(view: MKAnnotationView) {
         if let recognizers = view.gestureRecognizers {
             for recognizer in recognizers {
@@ -152,10 +155,6 @@ extension MapViewController: MKMapViewDelegate {
         longPress.minimumPressDuration = 0.7
         longPress.delegate = self
         view.addGestureRecognizer(longPress)
-    }
-    
-    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        parkInfoView?.removeFromSuperview()
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -201,7 +200,7 @@ extension MapViewController: MKMapViewDelegate {
         }
     }
     
-    func getAnnotationImage(parkName: String) -> UIImage {
+    private func getAnnotationImage(parkName: String) -> UIImage {
         if isFavorite(parkName: parkName) {
             return #imageLiteral(resourceName: "favorite_selected")
         } else {
@@ -209,7 +208,7 @@ extension MapViewController: MKMapViewDelegate {
         }
     }
     
-    func isFavorite(parkName: String) -> Bool {
+    private func isFavorite(parkName: String) -> Bool {
         if UserDefaults.standard.bool(forKey: parkName) {
             return true
         } else {
@@ -218,7 +217,7 @@ extension MapViewController: MKMapViewDelegate {
         
     }
     
-    func getAnnotationBorderColor(openTime: String) -> UIColor {
+    private func getAnnotationBorderColor(openTime: String) -> UIColor {
         
         if openTime.isOpenTime() {
             return UIColor.red
@@ -227,18 +226,36 @@ extension MapViewController: MKMapViewDelegate {
         }
     }
     
+    //MARK:- Public methods
+    func select(annotation: CustomPointAnnotation) {
+        mapView.selectAnnotation(annotation, animated: true)
+    }
     
     
 }
 
+//MARK:- Gesture recognizer
 extension MapViewController: UIGestureRecognizerDelegate {
     
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
+    @objc func didDragMap(sender: UIGestureRecognizer) {
+        if sender.state == UIGestureRecognizerState.began {
+            for annotation in mapView.selectedAnnotations {
+                mapView.deselectAnnotation(annotation, animated: false)
+            }
+        }
+    }
 }
 
+//MARK:- CLLocation delegate
 extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let coordinate: CLLocationCoordinate2D = manager.location?.coordinate {
             let userCoordinate = coordinate
+            //Only update userCoordinate first time entering screen
             locationManager.delegate = nil
             
             let coordinate = getNearestCoordinate(userCoordinate: userCoordinate, taipeiParks: taipeiParks)
@@ -248,22 +265,26 @@ extension MapViewController: CLLocationManagerDelegate {
     }
 }
 
+//MARK:- Custom delegate
 extension MapViewController: MapViewControllerDelegate {
     func parkInfoViewIsTapped(taipeiPark: TaipeiPark) {
+        pushDetailsVC(taipeiPark: taipeiPark)
+    }
+    
+    private func pushDetailsVC(taipeiPark: TaipeiPark) {
         let detailsViewController = DetailsViewController(nibName: VCConstants.DETAILS, bundle: nil)
         detailsViewController.taipeiPark = taipeiPark
         let parkName = taipeiPark.ParkName
         if let parkFacilities = parkFacilitiesDic[parkName], let parkFeatures = parkFeaturesDic[parkName] {
             detailsViewController.parkFacilities = parkFacilities
-                detailsViewController.parkFeatures = parkFeatures
-            
+            detailsViewController.parkFeatures = parkFeatures
         }
         navigationController?.pushViewController(detailsViewController, animated: true)
     }
 }
 
+
 class CustomPointAnnotation: MKPointAnnotation {
-    
     var taipeiPark: TaipeiPark!
     var isOpen: Bool!
 }

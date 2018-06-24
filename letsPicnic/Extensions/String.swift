@@ -10,6 +10,7 @@ import UIKit
 
 extension String {
     
+    //Check current time is in XX:XX~XX:XX
     func isOpenTime() -> Bool {
         
         let calender = Calendar.current
@@ -35,6 +36,7 @@ extension String {
         }
     }
     
+    // "ABCD".getSubstring(1,2) -> "BC"
     func getSubstring(startOffset: Int, endOffset: Int) -> String {
         let startIndex = self.index(self.startIndex, offsetBy: startOffset)
         let endIndex = self.index(self.startIndex, offsetBy: endOffset)

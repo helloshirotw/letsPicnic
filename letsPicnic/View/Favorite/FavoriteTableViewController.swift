@@ -15,18 +15,15 @@ protocol FavoriteTableViewControllerDelegate {
 
 class FavoriteTableViewController: UITableViewController {
 
-//    var favoriteParkRef = [String: Int]()
-//    var favoriteParks = [TaipeiPark]()
+    //MARK:- Properties
     var favoriteParksDic = [String: TaipeiPark]()
     var favoriteParksArray = [TaipeiPark]()
     
+    //MARK:- View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let nib = UINib(nibName: CellConstants.LIST, bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: CellConstants.LIST)
-        
-        
+        setupDefaults()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -38,30 +35,22 @@ class FavoriteTableViewController: UITableViewController {
     }
     
 
-    
+    //MARK:- Tableview life cycle
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return favoriteParksDic.count
-//        return favoriteParks.count
     }
-    
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: CellConstants.LIST, for: indexPath) as! ListTableViewCell
         cell.favoriteDelegate = self
         let park = favoriteParksArray[indexPath.row]
-//        let park = favoriteParks[indexPath.row]
-//        let parkName = park.ParkName
         cell.park = park
 
         return cell
         
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        let cell = tableView.cellForRow(at: IndexPath(row: indexPath.row, section: 0)) as? ListTableViewCell
-//        let text = favoriteParksDic[parkName!]?.Introduction
-//        let parkName = cell?.park.ParkName
         let text = favoriteParksArray[indexPath.row].Introduction
         let height = estimatedFrame(text: text).height
         if height > 100 {
@@ -73,6 +62,7 @@ class FavoriteTableViewController: UITableViewController {
         }
     }
     
+    //MARK:- Methods
     private func estimatedFrame(text: String) -> CGRect {
         let size = CGSize(width: 100, height: 100)
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
@@ -80,10 +70,15 @@ class FavoriteTableViewController: UITableViewController {
         return frame
     }
     
+    private func setupDefaults() {
+        let nib = UINib(nibName: CellConstants.LIST, bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: CellConstants.LIST)
+    }
 }
 
 extension FavoriteTableViewController: FavoriteTableViewControllerDelegate {
     
+    //MARK:- Custom delegate
     func handleMapButtonTapped(parkName: String) {
         tabBarController?.selectedIndex = 1
         let mapViewController = tabBarController?.viewControllers![1] as! MapViewController
@@ -104,15 +99,6 @@ extension FavoriteTableViewController: FavoriteTableViewControllerDelegate {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
-        
-//        if let index = favoriteParkRef.values.index(of: tag) {
-//            let key = favoriteParkRef.keys[index]
-//
-//            favoriteParks.remove(at: favoriteParks.index{$0.ParkName == key}!)
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//            }
-//        }
     }
 }
 

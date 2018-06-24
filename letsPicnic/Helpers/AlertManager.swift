@@ -8,18 +8,20 @@
 
 import UIKit
 
+let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+
 class AlertManager: NSObject {
     static let shared = AlertManager()
     private var alertController: UIAlertController!
     
-    func displayStandardAlert(vc: UIViewController,title: String, message: String) {
+    func displayStandardAlert(vc: UIViewController,title: String, message: String, action: UIAlertAction = okAction) {
         if alertController != nil {
             dismissAlert()
         }
         
         alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-        alertController.addAction(okAction)
+
+        alertController.addAction(action)
         vc.present(alertController, animated: true, completion: nil)
     }
     

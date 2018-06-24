@@ -10,29 +10,11 @@ import UIKit
 import MapKit
 class AnnotationView: MKAnnotationView {
     
+    //MARK:- Properties
     var img: UIImage!
     var borderColor: UIColor!
     
-    override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
-        super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
-   
-    }
-    
-    convenience init(frame: CGRect, image: UIImage, borderColor: UIColor) {
-        self.init(frame: frame)
-
-        self.img = image
-        self.borderColor = borderColor
-
-        addSubview(view)
-        view.addSubview(imageView)
-        addSubview(downArrowLabel)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+    //MARK:- Outlets
     lazy var view: UIView = {
         let view = UIView()
         view.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
@@ -50,7 +32,7 @@ class AnnotationView: MKAnnotationView {
         
         return imageView
     }()
-
+    
     
     lazy var downArrowLabel: UILabel = {
         let label = UILabel(frame: CGRect(x: 0, y: 45, width: 50, height: 10))
@@ -60,5 +42,32 @@ class AnnotationView: MKAnnotationView {
         label.textAlignment = .center
         return label
     }()
+    
+    //MARK:- View life cycle
+    override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
+        super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
+   
+    }
+    
+    convenience init(frame: CGRect, image: UIImage, borderColor: UIColor) {
+        self.init(frame: frame)
+
+        self.img = image
+        self.borderColor = borderColor
+
+        setupInterface()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK:- Methods
+    private func setupInterface() {
+        addSubview(view)
+        view.addSubview(imageView)
+        addSubview(downArrowLabel)
+    }
+    
     
 }
